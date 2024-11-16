@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SecurePay - Login</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function validateLogin() {
+      // Check if a cleaning service option is selected
+      const serviceSelected = document.querySelector('input[name="service"]:checked');
+      if (!serviceSelected) {
+        alert("Please select a cleaning service option before proceeding.");
+        return;
+      }
+
+      // Check if User ID and Password are filled out
+      const userId = document.getElementById("user-id").value;
+      const password = document.getElementById("password").value;
+      if (!userId || !password) {
+        alert("Please enter both User ID and Password.");
+        return;
+      }
+
+      // Proceed to bank details page
+      window.location.href = 'bankdetails.html';
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h2>Select Your Cleaning Service and Login</h2>
+
+    <!-- Cleaning Service Options -->
+    <form onsubmit="event.preventDefault(); validateLogin();">
+      <label><input type="radio" name="service" value="basic"> RM25 Basic Cleaning</label><br>
+      <label><input type="radio" name="service" value="standard"> RM48 Standard Cleaning</label><br>
+      <label><input type="radio" name="service" value="deep"> RM60 Deep Cleaning</label><br><br>
+
+      <!-- User ID and Password Fields -->
+      <label for="user-id">User ID:</label><br>
+      <input type="text" id="user-id" required><br><br>
+
+      <label for="password">Password:</label><br>
+      <input type="password" id="password" required><br><br>
+
+      <!-- Login Button -->
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</body>
+</html>

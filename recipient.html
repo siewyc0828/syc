@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SecurePay - Recipient</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function proceedToConfirmation() {
+      // Set the balance to zero in session storage
+      sessionStorage.setItem("balance", "0");
+      window.location.href = 'confirmation.html';
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h2>Transfer Money</h2>
+    <p><strong>Account Balance:</strong> <span class="balance-amount">RM3000.00</span></p>
+
+    <!-- Recipient Form -->
+    <form onsubmit="event.preventDefault(); proceedToConfirmation();">
+      <label for="recipient-account-number">Recipient Account Number</label>
+      <input type="text" id="recipient-account-number" class="input-field" required><br>
+
+      <button type="submit">Submit Payment</button>
+    </form>
+  </div>
+</body>
+</html>

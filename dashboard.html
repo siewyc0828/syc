@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SecurePay - Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function submitTransfer() {
+      const recipientAccount = document.getElementById("recipient-account").value;
+      if (recipientAccount) {
+        sessionStorage.setItem("balance", 0); // Set balance to zero
+        window.location.href = 'confirmation.html'; // Redirect to confirmation page
+      } else {
+        alert("Please enter a valid recipient account number.");
+      }
+    }
+
+    function saveBankDetails() {
+      const cardholderName = document.getElementById("cardholder-name").value;
+      const cardNumber = document.getElementById("card-number").value;
+      const expirationDate = document.getElementById("expiration-date").value;
+      const cvv = document.getElementById("cvv").value;
+
+      // Display entered details
+      document.getElementById("display-cardholder-name").textContent = cardholderName;
+      document.getElementById("display-card-number").textContent = cardNumber;
+      document.getElementById("display-expiration-date").textContent = expirationDate;
+      document.getElementById("display-cvv").textContent = cvv;
+
+      // Hide the form and show details for confirmation
+      document.getElementById("bank-details-form").style.display = "none";
+      document.getElementById("bank-details-display").style.display = "block";
+    }
+
+    function loadBalance() {
+      document.getElementById("account-balance").textContent = "RM3000.00"; // Initial balance
+    }
+
+    window.onload = loadBalance;
+  </script>
+</head>
+<body>
+  <div class="dashboard-container">
+    <h2>Dashboard</h2>
+    <div class="balance-section">
+      <p><strong>Account Balance:</strong> <span id="account-balance"></span></p>
+    </div>
+
+    <!-- Transfer Section -->
+    <div class="form-section">
+      <h3>Transfer Money</h3>
+      <label for="recipient-account">Recipient Account Number:</label>
+      <input type="text" id="recipient-account" class="input-field" required>
+      <button onclick="submitTransfer()" class="submit-button">Submit Payment</button>
+    </div>
+    
+    <!-- Bank Details Form -->
+    <div id="bank-details-form" class="form-section">
+      <h3>Enter Your Bank Details</h3>
+      <label for="cardholder-name">Cardholder Name:</label>
+      <input type="text" id="cardholder-name" class="input-field" required>
+
+      <label for="card-number">Card Number:</label>
+      <input type="text" id="card-number" class="input-field" required>
+
+      <label for="expiration-date">Expiration Date (MM/YY):</label>
+      <input type="text" id="expiration-date" class="input-field" required>
+
+      <label for="cvv">CVV:</label>
+      <input type="text" id="cvv" class="input-field" required>
+
+      <button onclick="saveBankDetails()" class="save-button">Save Bank Details</button>
+    </div>
+
+    <!-- Bank Details Display for Confirmation -->
+    <div id="bank-details-display" class="details-section" style="display: none;">
+      <h3>Your Bank Details</h3>
+      <p><strong>Cardholder Name:</strong> <span id="display-cardholder-name"></span></p>
+      <p><strong>Card Number:</strong> <span id="display-card-number"></span></p>
+      <p><strong>Expiration Date:</strong> <span id="display-expiration-date"></span></p>
+      <p><strong>CVV:</strong> <span id="display-cvv"></span></p>
+    </div>
+  </div>
+</body>
+</html>
